@@ -3,6 +3,7 @@ import 'package:adster/widgets/ListViewMyAds.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../screen/AddAdScreen.dart';
 import '../screen/LoginForm.dart';
 import '../screen/RegisterForm.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -116,7 +117,14 @@ class _SideDrawerState extends State<SideDrawer> {
           ListTile(
             leading: Icon(Icons.add),
             title: Text('Add new add'),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AdForm()),
+              )
+
+            },
           ),
           if (!showButtons)
           ListTile(

@@ -81,8 +81,10 @@ class _ListViewMyAdsState extends State<ListViewMyAds> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(ads[index].title),
-                        Text(ads[index].description),
+                        Text(ads[index].title, style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+                        SizedBox(height: 20),
+                        Text(ads[index].price.toString()+" EUR",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,)),
+                        SizedBox(height: 20),
                         Row(
                           children: [
                             ElevatedButton(
