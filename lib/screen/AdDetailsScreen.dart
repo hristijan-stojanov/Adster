@@ -60,21 +60,30 @@ class AdDetailScreen extends StatelessWidget {
             ],
             rows: [
               DataRow(cells: [
-                DataCell(Text('Title')),
+                DataCell(Text('Title',style: TextStyle(fontWeight: FontWeight.bold))),
                 DataCell(Text(ad.title)),
               ]),
               DataRow(cells: [
-                DataCell(Text('Description')),
+                DataCell(Text('Description',style: TextStyle(fontWeight: FontWeight.bold))),
                 DataCell(Text(ad.description)),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('Price',style: TextStyle(fontWeight: FontWeight.bold))),
+                DataCell(Text(ad.price.toString())),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('Type',style: TextStyle(fontWeight: FontWeight.bold))),
+                DataCell(Text(ad.type)),
               ]),
               // Dodajte poveke redovi za drugi atributi
             ],
           ),
+          SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>MapPanel()),
+                MaterialPageRoute(builder: (context) =>MapPanel(Lon: ad.lon, Lat: ad.lat)),
               );
             },
             child: Text('Open Map'),

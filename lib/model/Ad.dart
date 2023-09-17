@@ -15,6 +15,8 @@ class Ad {
   List<Imagee> images;
   String category;
   String city;
+  double lat;
+  double lon;
   List<dynamic> comments;
   int advertisedByUser;
   bool isLiked = false;
@@ -32,6 +34,8 @@ class Ad {
     required this.images,
     required this.category,
     required this.city,
+    required this.lat,
+    required this.lon,
     required this.comments,
     required this.advertisedByUser,
   });
@@ -49,6 +53,8 @@ class Ad {
     images: List<Imagee>.from(json["images"].map((x) => Imagee.fromJson(x))),
     category: json["category"],
     city: json["city"],
+    lat: json["lat"],
+    lon: json["lon"],
     comments: List<dynamic>.from(json["comments"].map((x) => x)),
     advertisedByUser: json["advertisedByUser"],
   );
@@ -66,6 +72,8 @@ class Ad {
     "images": List<dynamic>.from(images.map((x) => x.toJson())),
     "category": category,
     "city": city,
+    "lat": lat,
+    "lon": lon,
     "comments": List<dynamic>.from(comments.map((x) => x)),
     "advertisedByUser": advertisedByUser,
   };
