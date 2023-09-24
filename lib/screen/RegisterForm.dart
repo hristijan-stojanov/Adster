@@ -74,7 +74,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
       appBar: AppBar(
         title: Text('Registration Form'),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

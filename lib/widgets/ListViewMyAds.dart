@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screen/AdDetailsScreen.dart';
+import '../screen/EditAdScreen.dart';
 
 class ListViewMyAds extends StatefulWidget {
   @override
@@ -81,8 +82,10 @@ class _ListViewMyAdsState extends State<ListViewMyAds> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(ads[index].title),
-                        Text(ads[index].description),
+                        Text(ads[index].title, style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
+                        SizedBox(height: 20),
+                        Text(ads[index].price.toString()+" EUR",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,)),
+                        SizedBox(height: 20),
                         Row(
                           children: [
                             ElevatedButton(
@@ -100,7 +103,10 @@ class _ListViewMyAdsState extends State<ListViewMyAds> {
                             SizedBox(width: 10),
                             ElevatedButton(
                               onPressed: () {
-                                // Implement edit functionality here
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) =>EditAdForm(ad: ads[index])),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green,

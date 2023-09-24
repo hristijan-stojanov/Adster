@@ -6,23 +6,22 @@ import 'package:latlong2/latlong.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class MapPanel extends StatefulWidget {
-  const MapPanel({Key? key}) : super(key: key);
+   double Lat;
+   double Lon;
+   MapPanel({required this.Lat, required this.Lon, Key? key}) : super(key: key);
 
   @override
   State<MapPanel> createState() => _MapPanelState();
 }
 
 class _MapPanelState extends State<MapPanel> {
-
   final MapController mapController = MapController();
 
   Position? _currentPosition;
 
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
   }
 
   @override
@@ -38,8 +37,8 @@ class _MapPanelState extends State<MapPanel> {
     } else {
       setState(() {
         _currentPosition = Position(
-          latitude: 42.0041,
-          longitude: 21.4095,
+          latitude: 41.425040,
+          longitude: 22.650813,
           timestamp: DateTime.now(),
           accuracy: 100,
           altitude: 0,
@@ -66,64 +65,67 @@ class _MapPanelState extends State<MapPanel> {
 
   @override
   Widget build(BuildContext context) {
-
     return _currentPosition == null
         ? const CircularProgressIndicator()
         : Stack(children: [
-      FlutterMap(
-        mapController: mapController,
-        options: MapOptions(
-            center: LatLng(
-                _currentPosition!.latitude, _currentPosition!.longitude),
-            zoom: 13.0),
-        layers: [
-          TileLayerOptions(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-          ),
-          MarkerLayerOptions(markers: [
-            Marker(
-              point: LatLng(_currentPosition!.latitude,
-                  _currentPosition!.longitude),
-              builder: (ctx) => const Icon(
-                Icons.location_history,
-                color: Colors.green,
+            FlutterMap(
+              mapController: mapController,
+              options: MapOptions(
+                  center: LatLng(
+                      _currentPosition!.latitude, _currentPosition!.longitude),
+                  zoom: 13.0),
+              layers: [
+                TileLayerOptions(
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                ),
+                MarkerLayerOptions(markers: [
+                  Marker(
+                    point: LatLng(_currentPosition!.latitude,
+                        _currentPosition!.longitude),
+                    builder: (ctx) => const Icon(
+                      Icons.location_history,
+                      color: Colors.green,
+                    ),
+                  ),
+                  Marker(
+                    point: LatLng(widget.Lat,
+                        widget.Lon),
+                    builder: (ctx) => const Icon(
+                      Icons.location_on,
+                      color: Colors.green,
+                    ),
+                  ),
+                ]),
+              ],
+            ),
+            Positioned(
+              bottom: 16.0,
+              right: 16.0,
+              child: Column(
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        mapController.move(
+                            mapController.center, mapController.zoom + 1);
+                      });
+                    },
+                    child: const Icon(Icons.add),
+                  ),
+                  const SizedBox(height: 8.0),
+                  FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        mapController.move(
+                            mapController.center, mapController.zoom - 1);
+                      });
+                    },
+                    child: const Icon(Icons.remove),
+                  ),
+                  const SizedBox(height: 8.0),
+                ],
               ),
             ),
-
-          ]),
-        ],
-      ),
-      Positioned(
-        bottom: 16.0,
-        right: 16.0,
-        child: Column(
-          children: [
-            FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  mapController.move(
-                      mapController.center, mapController.zoom + 1);
-                });
-              },
-              child: const Icon(Icons.add),
-            ),
-            const SizedBox(height: 8.0),
-            FloatingActionButton(
-              onPressed: () {
-                setState(() {
-                  mapController.move(
-                      mapController.center, mapController.zoom - 1);
-                });
-              },
-              child: const Icon(Icons.remove),
-            ),
-            const SizedBox(height: 8.0),
-
-
-
-          ],
-        ),
-      ),
-    ]);
+          ]);
   }
 }

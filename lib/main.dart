@@ -4,6 +4,8 @@ import 'package:adster/widgets/ListViewSavedAd.dart';
 import 'package:adster/widgets/SideDrawer.dart';
 import 'package:flutter/material.dart';
 
+import 'model/Ad.dart';
+
 void main() {
   runApp( MyApp());
 }
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  List<Ad>? listad ;
+
+  MyHomePage({ this.listad});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +52,7 @@ class MyHomePage extends StatelessWidget {
             ),
 
       ]),
-      body: ListViewAd(),
+      body: ListViewAd(listad: listad,),
 
     );
   }
