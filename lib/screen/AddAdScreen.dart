@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+<<<<<<< HEAD
 import 'package:http/http.dart' as http;
 class AdForm extends StatefulWidget {
 
+=======
+
+class AdForm extends StatefulWidget {
+>>>>>>> f5854988b1118ecf83b8fa9fa98379e1b1e8482a
   @override
   _AdFormState createState() => _AdFormState();
 }
@@ -18,9 +23,14 @@ class _AdFormState extends State<AdForm> {
 
   String type = 'Buying';
   String condition = 'New';
+<<<<<<< HEAD
   String selectedCategory = 'Arduino';
   String selectedCity = 'Skopje';
 
+=======
+  String selectedCategory = 'Kategorija 1';
+  String selectedCity = 'Grad 1';
+>>>>>>> f5854988b1118ecf83b8fa9fa98379e1b1e8482a
 
   List<File> images = [];
 
@@ -35,6 +45,7 @@ class _AdFormState extends State<AdForm> {
     }
   }
 
+<<<<<<< HEAD
   void _submitForm() async {
     if (_formKey.currentState!.validate()) {
 
@@ -82,6 +93,14 @@ class _AdFormState extends State<AdForm> {
   }
 
 
+=======
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      // Izvršete akcii za zapishuvanje na informaciite vo vašata backend logika
+    }
+  }
+
+>>>>>>> f5854988b1118ecf83b8fa9fa98379e1b1e8482a
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -201,6 +220,7 @@ class _AdFormState extends State<AdForm> {
                       .toList(),
                   decoration: InputDecoration(labelText: 'condition'),
                 ),
+<<<<<<< HEAD
                 DropdownButtonFormField<String>(
                   value: selectedCity,
                   onChanged: (value) {
@@ -235,11 +255,17 @@ class _AdFormState extends State<AdForm> {
                       .toList(),
                   decoration: InputDecoration(labelText: 'Category'),
                 ),
+=======
+>>>>>>> f5854988b1118ecf83b8fa9fa98379e1b1e8482a
                 ElevatedButton(
                   onPressed: () {
                     _getImage(ImageSource.gallery);
                   },
+<<<<<<< HEAD
                   child: Text('Add Image'),
+=======
+                  child: Text('Dodadi Slika'),
+>>>>>>> f5854988b1118ecf83b8fa9fa98379e1b1e8482a
                 ),
                 Column(
                   children: images.map((image) {
@@ -248,7 +274,11 @@ class _AdFormState extends State<AdForm> {
                 ),
                 ElevatedButton(
                   onPressed: _submitForm,
+<<<<<<< HEAD
                   child: Text('Save'),
+=======
+                  child: Text('Zachuvaj Oglas'),
+>>>>>>> f5854988b1118ecf83b8fa9fa98379e1b1e8482a
                 ),
               ],
             ),

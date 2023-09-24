@@ -1,10 +1,4 @@
-import 'package:adster/main.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
-import 'dart:convert';
-import 'package:adster/model/Ad.dart';
-
 
 class FormScreen extends StatefulWidget {
   @override
@@ -16,49 +10,7 @@ class _FormScreenState extends State<FormScreen> {
   String priceFrom = '';
   String priceTo = '';
   String selectedAdType = 'AdType';
-  String selectedLocation = 'All';
-  List<Ad> ads = [];
-  List<Ad> AdFromJson(String str) => List<Ad>.from(json.decode(str).map((x) => Ad.fromJson(x)));
-  void _Search() async {
-
-    try {
-
-      final response = await Dio().get(
-        'http://10.0.2.2:9090/api/search',
-        data: {
-          "title": title,
-          "priceFrom": priceFrom,
-          "priceTo": priceTo,
-          "selectedAdType": selectedAdType,
-          "selectedLocation": selectedLocation,
-        },
-        options: Options(
-          contentType: 'application/json; charset=UTF-8',
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        final List<dynamic> dataList= response.data;
-        print(response.data);
-        final List<Ad> fetchedAds = dataList.map((json) => Ad.fromJson(json)).toList();
-        setState(() {
-          ads = fetchedAds;
-        });
-        print('Successful');
-
-      } else {
-        print('Failed: ');
-
-      }
-    } catch (error) {
-      print('Error sending login request: $error');
-
-    }
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => MyHomePage(listad: ads)), // Drug ekran
-    );
-  }
+  String selectedLocation = 'All  R';
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +104,8 @@ class _FormScreenState extends State<FormScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  _Search();
+                  // Ovde možete slati podatke na server koristeći vrednosti title, priceFrom, priceTo, selectedAdType i selectedLocation.
+                  // Implementirajte logiku za slanje na server prema vašim potrebama.
                 },
                 child: Text('Search'),
               ),
